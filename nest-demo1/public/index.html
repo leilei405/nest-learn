@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/qs@6.10.2/dist/qs.js"></script>
+</head>
+<body>
+    <input id="fileInput" type="file" multiple/>
+    <script>
+        async function urlParam() {
+            const res = await axios.get('/api/user/1');
+            console.log(res.data, 'res url param');            
+        }
+        urlParam();
+    </script>
+    <script>
+        async function query() {
+            const res = await axios.get('/api/user/find', {
+                params: {
+                    name: '张',
+                    age: 18
+                }
+            });
+            console.log(res.data, 'res query');            
+        }
+        query();
+    </script>
+     <script>
+        async function formUrlEncoded() {
+            const res = await axios.post('/api/user', Qs.stringify({
+                name: '张',
+                age: 18
+            }), {
+                headers: { 'content-type': 'application/x-www-form-urlencoded' }
+            });
+            console.log(res.data, 'res formUrlEncoded');  
+        }
+
+        formUrlEncoded();
+    </script>
+    <script>
+        async function json() {
+            const res = await axios.post('/api/user', {
+                name: '张',
+                age: 18
+            });
+            console.log(res.data, 'res json');     
+        }
+        json();
+    </script>
+    <script>
+        const fileInput = document.querySelector('#fileInput');
+
+        async function formData() {
+            const data = new FormData();
+            data.set('name','张');
+            data.set('age', 18);
+            data.set('file1', fileInput.files[0]);
+            data.set('file2', fileInput.files[1]);
+
+            const res = await axios.post('/api/user/file', data, {
+                headers: { 'content-type': 'multipart/form-data' }
+            });
+            
+            console.log(res, 'res formData');     
+        }
+
+        fileInput.onchange = formData;
+    </script>
+   <div>Hello</div>
+</body>
