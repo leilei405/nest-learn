@@ -1,8 +1,8 @@
 {
   "name": "nest-demo2",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "学习nestjs调式",
+  "author": "Lucky",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
