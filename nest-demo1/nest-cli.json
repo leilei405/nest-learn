@@ -9,6 +9,13 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true, 
-    "watchAssets": false
+    "watchAssets": false,
+    "assets": [
+      {
+        "include": "*.env",
+        "outDir": "dist",
+        "watchAssets": false
+      }
+    ]
   }
 }
