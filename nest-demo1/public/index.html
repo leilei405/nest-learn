@@ -7,50 +7,49 @@
 <body>
     <input id="fileInput" type="file" multiple />
     <script>
-        async function urlParam() {
-            const res = await axios.get('/api/user/1');
-            console.log(res.data, 'res url param');            
+        async function findOne() {
+            const res = await axios.get('/api/person/1');
+            console.log(res, '获取URL参数');            
         }
-        urlParam();
+        findOne();
     </script>
     <script>
         async function query() {
-            const res = await axios.get('/api/user/find', {
+            const res = await axios.get('/api/person/find', {
                 params: {
                     name: '张',
                     age: 18
                 }
             });
-            console.log(res.data, 'res query');            
+            console.log(res, 'res query');            
         }
         query();
     </script>
      <script>
         async function formUrlEncoded() {
-            const res = await axios.post('/api/user', Qs.stringify({
+            const res = await axios.post('/api/person', Qs.stringify({
                 name: '张',
                 age: 18
             }), {
                 headers: { 'content-type': 'application/x-www-form-urlencoded' }
             });
-            console.log(res.data, 'res formUrlEncoded');  
+            console.log(res, 'res formUrlEncoded');  
         }
 
         formUrlEncoded();
     </script>
     <script>
         async function json() {
-            const res = await axios.post('/api/user', {
+            const res = await axios.post('/api/person', {
                 name: '张',
                 age: 18
             });
-            console.log(res.data, 'res json');     
+            console.log(res, 'res json');     
         }
         json();
     </script>
     <script>
         const fileInput = document.querySelector('#fileInput');
-
         async function formData() {
             const data = new FormData();
             data.set('name','张');
@@ -58,13 +57,12 @@
             data.set('file1', fileInput.files[0]);
             data.set('file2', fileInput.files[1]);
 
-            const res = await axios.post('/api/user/file', data, {
+            const res = await axios.post('/api/person/uploadFile', data, {
                 headers: { 'content-type': 'multipart/form-data' }
             });
             
             console.log(res, 'res formData');     
         }
-
         fileInput.onchange = formData;
     </script>
    <div>Hello</div>
