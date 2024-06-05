@@ -9,6 +9,7 @@ async function bootstrap() {
   app.setGlobalPrefix('/api');
   
   app.useStaticAssets('public', { prefix: '/static'});
+  
   await app.listen(3000);
 }
 bootstrap();
